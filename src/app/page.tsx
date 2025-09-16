@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Navbar } from '@/components/ui/navbar'
 import { Footer } from '@/components/ui/footer'
 import { ConfigNotification } from '@/components/ui/config-notification'
-import { ArrowRight, Target, BookOpen, Brain, Users, Star, Check, Zap, Globe, Shield, TrendingUp, Sparkles, Rocket, Award } from 'lucide-react'
+import { ArrowRight, Target, BookOpen, Brain, Users, Star, Check, Zap, Globe, Shield, TrendingUp, Sparkles, Rocket, Award, Code, Database, Layout, Smartphone, Monitor, Server } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -175,6 +175,207 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Guides Section */}
+      <section id="guides" className="section-padding bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-float animate-delay-300"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200/50 text-sm font-medium text-blue-800 mb-8">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Learning Guides
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8">
+              Comprehensive
+              <span className="text-gradient block">Learning Paths</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Curated roadmaps and guides to help you master the skills needed for your dream tech career
+            </p>
+          </div>
+
+          {/* Role-based Roadmaps */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Role-based Roadmaps</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Link href="/login" className="group">
+                <Card className="feature-card hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardHeader className="text-center p-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Layout className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-gray-900">Frontend Developer</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">
+                      Master React, Vue, Angular and modern frontend technologies
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+
+              <Link href="/login" className="group">
+                <Card className="feature-card hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardHeader className="text-center p-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Server className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-gray-900">Backend Developer</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">
+                      Learn Node.js, Python, Java and server-side technologies
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+
+              <Link href="/login" className="group">
+                <Card className="feature-card hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardHeader className="text-center p-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Monitor className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-gray-900">Full Stack Developer</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">
+                      Complete roadmap covering both frontend and backend skills
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+
+              <Link href="/login" className="group">
+                <Card className="feature-card hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <CardHeader className="text-center p-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Brain className="h-8 w-8 text-white" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-gray-900">AI Engineer</CardTitle>
+                    <CardDescription className="text-sm text-gray-600">
+                      Dive into machine learning, AI, and data science
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+            </div>
+          </div>
+
+          {/* Skill-based Roadmaps */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Skill-based Roadmaps</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {[
+                { name: 'JavaScript', color: 'from-yellow-500 to-orange-500' },
+                { name: 'Python', color: 'from-blue-500 to-green-500' },
+                { name: 'React', color: 'from-cyan-500 to-blue-500' },
+                { name: 'Node.js', color: 'from-green-500 to-emerald-500' },
+                { name: 'TypeScript', color: 'from-blue-600 to-indigo-600' },
+                { name: 'Docker', color: 'from-blue-400 to-cyan-400' },
+                { name: 'AWS', color: 'from-orange-500 to-yellow-500' },
+                { name: 'Git', color: 'from-orange-600 to-red-600' },
+                { name: 'SQL', color: 'from-indigo-500 to-purple-500' },
+                { name: 'Kubernetes', color: 'from-blue-500 to-purple-500' },
+                { name: 'GraphQL', color: 'from-pink-500 to-rose-500' },
+                { name: 'MongoDB', color: 'from-green-600 to-teal-600' },
+              ].map((skill) => (
+                <Link key={skill.name} href="/login" className="group">
+                  <div className="p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group-hover:scale-105">
+                    <div className={`w-8 h-8 bg-gradient-to-r ${skill.color} rounded-lg flex items-center justify-center mx-auto mb-2`}>
+                      <Code className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="text-center">
+                      <div className="text-sm font-semibold text-gray-900">{skill.name}</div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Popular Guides */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Popular Guides</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: 'How to become a Frontend Developer in 2024',
+                  description: 'Complete guide with roadmap, skills, and resources',
+                  icon: Layout,
+                  color: 'from-blue-500 to-cyan-500'
+                },
+                {
+                  title: 'Backend Development Best Practices',
+                  description: 'Learn scalable architecture and clean code principles',
+                  icon: Server,
+                  color: 'from-green-500 to-emerald-500'
+                },
+                {
+                  title: 'JavaScript Interview Questions 2024',
+                  description: 'Top 50 questions with detailed explanations',
+                  icon: Code,
+                  color: 'from-yellow-500 to-orange-500'
+                },
+                {
+                  title: 'React vs Vue vs Angular',
+                  description: 'Comprehensive comparison to choose the right framework',
+                  icon: Monitor,
+                  color: 'from-purple-500 to-violet-500'
+                },
+                {
+                  title: 'Database Design Fundamentals',
+                  description: 'Learn SQL, NoSQL, and database optimization',
+                  icon: Database,
+                  color: 'from-indigo-500 to-purple-500'
+                },
+                {
+                  title: 'Mobile App Development Guide',
+                  description: 'Native vs Cross-platform development roadmap',
+                  icon: Smartphone,
+                  color: 'from-pink-500 to-rose-500'
+                },
+              ].map((guide, index) => {
+                const Icon = guide.icon
+                return (
+                  <Link key={index} href="/login" className="group">
+                    <Card className="feature-card hover:shadow-xl transition-all duration-300 cursor-pointer h-full">
+                      <CardHeader className="p-6">
+                        <div className={`w-12 h-12 bg-gradient-to-r ${guide.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                          <Icon className="h-6 w-6 text-white" />
+                        </div>
+                        <CardTitle className="text-lg font-semibold text-gray-900 mb-3">{guide.title}</CardTitle>
+                        <CardDescription className="text-gray-600">
+                          {guide.description}
+                        </CardDescription>
+                        <div className="flex items-center text-blue-600 text-sm font-medium mt-4 group-hover:text-blue-700">
+                          Read Guide
+                          <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </CardHeader>
+                    </Card>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* CTA to access guides */}
+          <div className="text-center">
+            <div className="max-w-2xl mx-auto">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start Learning?</h3>
+              <p className="text-lg text-gray-600 mb-8">
+                Sign in to access our complete collection of roadmaps, guides, and learning resources.
+              </p>
+              <Link href="/login">
+                <Button size="lg" className="text-lg px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-xl hover:shadow-blue-500/25">
+                  <BookOpen className="mr-3 h-5 w-5" />
+                  Access All Guides
+                  <ArrowRight className="ml-3 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

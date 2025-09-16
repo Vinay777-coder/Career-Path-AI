@@ -29,6 +29,7 @@ export function Navbar({ user, showAuth = true }: NavbarProps) {
     { name: 'AI Chat', href: '/chat' },
   ] : [
     { name: 'Features', href: '#features' },
+    { name: 'Guides', href: '#guides' },
     { name: 'About', href: '#about' },
   ]
 

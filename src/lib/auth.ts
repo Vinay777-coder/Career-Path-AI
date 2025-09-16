@@ -61,7 +61,22 @@ export async function signOut() {
 export async function signInWithEmailPassword(email: string, password: string) {
   try {
     if (!isSupabaseConfigured()) {
-      return { user: null, error: new Error('Supabase not configured. Please add your Supabase credentials to .env.local') }
+      // Use mock authentication for demo purposes
+      if (email === 'demo@careerpath.ai' && password === 'demo123') {
+        const mockUser = {
+          id: 'mock-user-id',
+          email: email,
+          user_metadata: { username: 'Demo User' }
+        }
+        const sessionData = {
+          user: mockUser,
+          expires_at: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+        }
+        localStorage.setItem('mock-auth-session', JSON.stringify(sessionData))
+        return { user: mockUser, error: null }
+      } else {
+        return { user: null, error: new Error('Invalid credentials. Try demo@careerpath.ai / demo123') }
+      }
     }
     
     const { data, error } = await supabase!.auth.signInWithPassword({
@@ -80,7 +95,18 @@ export async function signInWithEmailPassword(email: string, password: string) {
 export async function signUpWithEmailPassword(email: string, password: string) {
   try {
     if (!isSupabaseConfigured()) {
-      return { user: null, error: new Error('Supabase not configured. Please add your Supabase credentials to .env.local') }
+      // Mock sign up - just create a demo account
+      const mockUser = {
+        id: 'mock-user-' + Date.now(),
+        email: email,
+        user_metadata: { username: email.split('@')[0] }
+      }
+      const sessionData = {
+        user: mockUser,
+        expires_at: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+      }
+      localStorage.setItem('mock-auth-session', JSON.stringify(sessionData))
+      return { user: mockUser, error: null }
     }
     
     const { data, error } = await supabase!.auth.signUp({

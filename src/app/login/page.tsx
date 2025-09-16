@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { signInWithGoogle, signInWithGithub, signInWithEmailPassword, signUpWithEmailPassword } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
@@ -16,9 +16,16 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [authMethod, setAuthMethod] = useState<'oauth' | 'email'>('oauth')
+  const [authMethod, setAuthMethod] = useState<'oauth' | 'email'>('email') // Default to email since OAuth might not be configured
   const [isSignUp, setIsSignUp] = useState(false)
+  const [isSupabaseConfigured, setIsSupabaseConfigured] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    // Check if Supabase is configured
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    setIsSupabaseConfigured(Boolean(supabaseUrl && !supabaseUrl.includes('placeholder')))
+  }, [])
 
 
 
@@ -141,31 +148,50 @@ export default function LoginPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6 relative z-10" style={{ pointerEvents: 'auto' }}>
-              {/* Auth Method Toggle */}
-              <div className="flex p-1 bg-gray-100 rounded-xl">
-                <button
-                  onClick={() => setAuthMethod('oauth')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    authMethod === 'oauth'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  OAuth Login
-                </button>
-                <button
-                  onClick={() => setAuthMethod('email')}
-                  className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    authMethod === 'email'
-                      ? 'bg-white text-gray-900 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Email & Password
-                </button>
-              </div>
+              {/* Auth Method Toggle - only show if OAuth is available */}
+              {isSupabaseConfigured && (
+                <div className="flex p-1 bg-gray-100 rounded-xl">
+                  <button
+                    onClick={() => setAuthMethod('oauth')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      authMethod === 'oauth'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    OAuth Login
+                  </button>
+                  <button
+                    onClick={() => setAuthMethod('email')}
+                    className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      authMethod === 'email'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Email & Password
+                  </button>
+                </div>
+              )}
 
-              {authMethod === 'email' ? (
+              {/* Demo credentials notice for non-configured Supabase */}
+              {!isSupabaseConfigured && (
+                <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Shield className="w-4 h-4 text-blue-600" />
+                    <span className="text-sm font-medium text-blue-800">Demo Mode</span>
+                  </div>
+                  <p className="text-sm text-blue-700 mb-1">
+                    Use these demo credentials to explore the platform:
+                  </p>
+                  <p className="text-sm font-mono text-blue-800 bg-blue-100 p-2 rounded">
+                    Email: demo@careerpath.ai<br />
+                    Password: demo123
+                  </p>
+                </div>
+              )}
+
+              {(authMethod === 'email' || !isSupabaseConfigured) ? (
                 /* Email/Password Form */
                 <form onSubmit={handleEmailSignIn} className="space-y-4 relative z-10" style={{ pointerEvents: 'auto' }}>
                   {/* Sign In/Sign Up Toggle */}
@@ -271,8 +297,8 @@ export default function LoginPage() {
                   </Button>
 
                 </form>
-              ) : (
-                /* OAuth Buttons */
+              ) : isSupabaseConfigured ? (
+                /* OAuth Buttons - only show if Supabase is configured */
                 <div className="space-y-4">
                   {/* Google Sign In */}
                   <Button
@@ -303,7 +329,7 @@ export default function LoginPage() {
                     Continue with GitHub
                   </Button>
                 </div>
-              )}
+              ) : null}
 
               <div className="text-center py-4">
                 <div className="text-xs text-gray-500 border-t border-gray-200 pt-4">

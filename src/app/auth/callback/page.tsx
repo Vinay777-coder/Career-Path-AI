@@ -22,19 +22,39 @@ export default function AuthCallback() {
           return
         }
         
-        // If there's a code, let the route handler process it
-        // We'll just wait a moment and then check for session
-        if (code) {
-          // Wait briefly for the route handler to process
-          await new Promise(resolve => setTimeout(resolve, 1000))
+        // If no OAuth code, this might be a direct access - check for existing session
+        if (!code) {
+          // Check for mock session first
+          const mockSession = localStorage.getItem('mock-auth-session')
+          if (mockSession) {
+            try {
+              const session = JSON.parse(mockSession)
+              if (session.expires_at > Date.now()) {
+                router.push('/dashboard')
+                return
+              } else {
+                localStorage.removeItem('mock-auth-session')
+              }
+            } catch (e) {
+              localStorage.removeItem('mock-auth-session')
+            }
+          }
+          
+          // No valid session found, redirect to login
+          router.push('/login?error=no_session')
+          return
         }
         
+        // Handle OAuth code if present
         if (!supabase) {
           router.push('/login?error=config_error')
           return
         }
         
-        // Check current session
+        // Wait briefly for the route handler to process OAuth
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        
+        // Check current session after OAuth processing
         const { data, error: sessionError } = await supabase.auth.getSession()
         
         if (sessionError) {
@@ -44,12 +64,12 @@ export default function AuthCallback() {
         }
 
         if (data.session) {
-          // Successful authentication - redirect to dashboard
-          console.log('Session found, redirecting to dashboard')
+          // Successful OAuth authentication - redirect to dashboard
+          console.log('OAuth session found, redirecting to dashboard')
           router.push('/dashboard')
         } else {
           // No session - wait a bit more and try again
-          console.log('No session found, waiting and retrying...')
+          console.log('No OAuth session found, waiting and retrying...')
           setTimeout(async () => {
             if (supabase) {
               const { data: retryData } = await supabase.auth.getSession()

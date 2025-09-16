@@ -341,7 +341,7 @@ export default function LoginPage() {
                 <Star className="w-6 h-6 text-white" />
               </div>
               <div>
-                <div className="font-semibold text-gray-900 text-base">Premium Experience</div>
+                <div className="font-semibold text-gray-900 text-base">Complete Experience</div>
                 <div className="text-sm text-gray-600 mt-1">Join 10,000+ developers advancing their careers</div>
               </div>
             </div>

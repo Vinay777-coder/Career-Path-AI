@@ -159,7 +159,7 @@ export default function HomePage() {
                 </div>
                 <CardTitle className="text-2xl mb-3">Curated Resources</CardTitle>
                 <CardDescription className="text-gray-600 text-base leading-relaxed">
-                  Access to premium courses, tutorials, and documentation tailored to your learning path
+                  Access to courses, tutorials, and documentation tailored to your learning path
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -241,7 +241,7 @@ export default function HomePage() {
             <Link href="/login">
               <Button size="lg" className="text-lg px-10 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-2xl hover:shadow-blue-500/25 button-glow">
                 <Rocket className="mr-3 h-5 w-5" />
-                Get Started Free
+                Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -249,15 +249,15 @@ export default function HomePage() {
           <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
             <div className="flex items-center">
               <Check className="w-4 h-4 mr-2 text-green-500" />
-              <span>No credit card required</span>
+              <span>No setup required</span>
             </div>
             <div className="flex items-center">
               <Check className="w-4 h-4 mr-2 text-green-500" />
-              <span>Free forever plan</span>
+              <span>Start immediately</span>
             </div>
             <div className="flex items-center">
               <Check className="w-4 h-4 mr-2 text-green-500" />
-              <span>Cancel anytime</span>
+              <span>All features included</span>
             </div>
           </div>
         </div>

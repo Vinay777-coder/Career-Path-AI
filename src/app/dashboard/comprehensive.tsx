@@ -559,7 +559,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="hidden sm:block">
                   <p className="text-sm font-medium text-gray-900">{profile?.username || 'Developer'}</p>
-                  <p className="text-xs text-gray-500">Premium Member</p>
+                  <p className="text-xs text-gray-500">Active Member</p>
                 </div>
               </div>
             </div>

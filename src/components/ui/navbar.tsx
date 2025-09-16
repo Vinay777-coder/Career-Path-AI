@@ -29,7 +29,6 @@ export function Navbar({ user, showAuth = true }: NavbarProps) {
     { name: 'AI Chat', href: '/chat' },
   ] : [
     { name: 'Features', href: '#features' },
-    { name: 'Pricing', href: '#pricing' },
     { name: 'About', href: '#about' },
   ]
 
@@ -93,7 +92,7 @@ export function Navbar({ user, showAuth = true }: NavbarProps) {
                   </Link>
                   <Link href="/login">
                     <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg">
-                      Get Started Free
+                      Get Started
                     </Button>
                   </Link>
                 </div>
@@ -177,7 +176,7 @@ export function Navbar({ user, showAuth = true }: NavbarProps) {
                           className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
-                          Get Started Free
+                          Get Started
                         </Button>
                       </Link>
                     </>
